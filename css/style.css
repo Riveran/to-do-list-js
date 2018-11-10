@@ -1,63 +1,191 @@
-*{
-    margin: 0;
-    padding: 0;
-    margin: 3px;
-    margin-bottom: 10px;
+:root {
+	--righteous-font: 'Righteous', cursive;
 }
-#root {
-    border: 1px solid black;
-    border-radius: 5px;
-    width: 400px;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    margin-top: 100px;
+
+.inputText {
+    font-size: 32px;
+}
+
+h1 {
+	color: white;
+	margin: 0;
+	font-size: 64px;
+	text-align: center;
+	font-family: 'Fira Sans', sans-serif;
+}
+
+.lead {
+    position: absolute;
+    color: white;
+    margin: 0;
+    font-size: 24px;
+    text-align: center;
+    font-family: 'Fira Sans', sans-serif;
+    top: 85px;
+    width: 100%;
+}
+
+body {
+    color: white;
+    font-family: 'Fira Sans', sans-serif;
+    background-blend-mode: multiply;
 }
 
 .container {
-
+    display: block;
+    width: 550px;
+    border: 2px solid #03a9f4;
+    border-radius: 15px;
+    padding: 20px 16px 30px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 50px auto 60px;
 }
 
-#new-task {
-    width: 200px;
+ul {
+    margin: 5px 0;
+    padding: 0;
 }
 
-li {
+li * {
+    float: left;
+}
+
+li, h3 {
+    clear: both;
     list-style: none;
 }
 
-input {
-    border: 1px solid black;
-    border-radius: 4px;
-}
-
-#add {
-    width: 100px;
-    border: 1px solid gray;
-    border-radius: 4px;
-    display: inline-block;
+input, button {
+    outline: none;
 }
 
 button {
-    display: block;
-    margin: 0;
-    padding: 0;
     background: none;
-    border: 0;
+    border: 0px;
+    color: white;
+    font-size: 15px;
+    font-family: 'Fira Sans', sans-serif;
+    cursor: pointer;
+    float: right;
+    margin: 8px auto;
+}
+
+button:hover {
+    color: black;
+}
+
+#add:hover {
+	cursor: pointer;
+    border-radius: 30px;
+    color: white;
+    background-color: green;
+}
+
+#add {
+    margin-left: 20px;
+    padding: 10px;
+    color: green;
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
 }
 
 h3 {
-    border-bottom: 1px solid black;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border-bottom: 3px solid white;
+    padding: 10px 0;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    font-family: 'Fira Sans', sans-serif;
 }
 
-.checkbox {
-
+input[type="text"] {
+    margin: 1px 0;
+    font-size: 18px;
+    line-height: 18px;
+    height: 18px;
+    padding: 10px;
+    border: 2px solid white;
+    background: rgba(5, 5, 5, 0.5);
+    border-radius: 6px;
+    font-family: 'Fira Sans', sans-serif;
+    color: gray;
 }
 
-.edit {
-
+input[type="text"]:focus {
+    color: white;
 }
 
-.delete {
-    
+label[for='new-task'] {
+    display: block;
+    margin: 0 0 20px;
+}
+
+input#new-task {
+    float: left;
+    width: 400px;
+    margin-bottom: 24px;
+}
+
+li > div > button:hover {
+    color: #00aa00;
+}
+
+li > button.checkbox:hover {
+    color: #7a7a7a;
+}
+
+li {
+    overflow: hidden;
+    border-bottom: 1px solid white;
+}
+
+li > input[type="checkbox"] {
+    margin: 0 10px;
+    position: relative;
+    top: 15px;
+    transform: scale(1.5);
+}
+
+li > label {
+    font-size: 18px;
+    line-height: 40px;
+    width: 421px;
+    padding: 1px 0 0 11px
+}
+
+li > input[type="text"] {
+    width: 400px;
+}
+
+li > div >  .delete:hover {
+    color: #bb0000;
+}
+
+li > div >  .description:hover {
+    color: #0000ff;
+}
+
+#finished-tasks label, #finished-tasks button {
+    text-decoration: line-through;
+    color: #555555;
+}
+
+ul li input[type=text] {
+    display: none;
+}
+
+ul li.editMode input[type=text] {
+    display: block;
+    width: 160px;
+}
+
+ul li.editMode label {
+    display: none;
+}
+
+button.checkbox {
+    float: left;
 }

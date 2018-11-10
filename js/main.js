@@ -1,3 +1,4 @@
+"use strict"
 var addButton = document.getElementById('add')
 var inputTask = document.getElementById('new-task')
 var unfinishedTasks = document.getElementById('unfinished-tasks')
@@ -41,30 +42,62 @@ function addTask() {
 }
 
 addButton.onclick = addTask;
-
+    
 function deleteTask() {
-    var listItem = this.paerntNode;
-    console.log(listItem)
+    var listItem = this.parentNode;
+    var ul = listItem.parentNode;
+    ul.removeChild(listItem)
 }
 
 function editTask() {
-    console.log('2')
+    var editButton = this;
+    var listItem = this.parentNode;
+    var label =listItem.querySelector('label');
+    var input = listItem.querySelector('input[type=text]');
+
+    var containsClass = listItem.classList.contains('editMode');
+
+    if(containsClass) {
+        label.innerText = input.value;
+        editButton.className = "materian-icons edit";
+        editButton.innerHTML = '<i class="material-icons">edit</i>';
+    } else {
+        input.value = label.innerText;
+        editButton.className = editButton.className = "materian-icons save";
+        editButton.innerHTML = '<i class="material-icons">save</i>';
+    }
+
+    listItem.classList.toggle('editMode');
 }
 
 function finishTask() {
-    console.log('3')
+    var listItem = this.parentNode;
+    var checkbox = listItem.querySelector('button.checkbox');
+    checkbox.className = "material-icons checkbox";
+    checkbox.innerHTML = '<i class="material-icons">check_box</i>';
+
+    finishedTasks.appendChild(listItem);
+    bindTaskEvents(listItem, unfinishTask);
+
 } 
 
 function unfinishTask() {
-    console.log('4')
+    var listItem = this.parentNode;
+    var checkbox = listItem.querySelector('button.checkbox');
+    checkbox.className = "material-icons checkbox";
+    checkbox.innerHTML = '<i class="material-icons">check_box_outline_blank</i>';
+    unfinishedTasks.appendChild(listItem);
+    bindTaskEvents(listItem, finishTask)
 }
 
 function bindTaskEvents(listItem,checkboxEvent) {
     var checkbox = listItem.querySelector('button.checkbox');
     var editButton = listItem.querySelector('button.edit');
-    var deleteButton = listItem.querySelector('button.delete');
+    var deleteButton = listItem.querySelector('button.delete')
+    
 
     checkbox.onclick = checkboxEvent;
     editButton.onclick = editTask;
     deleteButton.onclick = deleteTask;
-} 
+} document.q
+
