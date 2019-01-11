@@ -1,28 +1,48 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import AddItem from './components/addItem'
+import ItemsList from './components/itemsList'
 
-class App extends Component {
-  render() {
+const TODOLIST = [
+  {
+    id: 1123,
+    text: 'Купить молока'
+  },
+  {
+    id: 1623,
+    text: 'Наломать дров'
+  },
+  {
+    id: 1153,
+    text: 'Проверить маршрут'
+  }
+]
+
+export default class App extends Component {
+  state = {
+    items: TODOLIST,
+    test: ''
+  }
+
+  removeTodo = itemId => {
+    const item = this.state.items.find(({ id }) => id === itemId)
+    const index = this.state.items.indexOf(item)
+    const newItems = JSON.parse(JSON.stringify(this.state.items))
+    newItems.splice(index, 1)
+    this.setState({ items: newItems })
+  }
+
+  toggleClick = data => {
+    const newItem = [data, ...this.state.items]
+    this.setState({
+      items: newItem
+    })
+  }
+  render () {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <AddItem toggleClick={this.toggleClick} />
+        <ItemsList toDoList={this.state.items} removeTodo={this.removeTodo} />
       </div>
-    );
+    )
   }
 }
-
-export default App;
